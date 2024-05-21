@@ -1,36 +1,81 @@
 ---
-title: About package README files
+title: stpl-webcam
 ---
 
-To help others find your packages on npm and have a good experience using your code in their projects, we recommend including a README file in your package directory. Your README file may include directions for installing, configuring, and using the code in your package, as well as any other information a user may find helpful. The README file will be shown on the package page.
+## Installation
 
-An npm package README file must be in the root-level directory of the package.
+Install the package via npm:
 
-## Creating and adding a README.md file to a package
+npm install stpl-webcam
 
-1. In a text editor, in your package root directory, create a file called `README.md`.
-2. In the `README.md` file, add useful information about your package.
-3. Save the `README.md` file.
+or using Yarn:
 
-<Note>
+yarn add stpl-webcam
 
-**Note:** The file extension `.md` indicates a Markdown file. For more information about Markdown, see the GitHub Guide "[Mastering Markdown](https://guides.github.com/features/mastering-markdown/#what)".
+## Usage
 
-</Note>
+import React from 'react';
+import Webcam from 'stpl-webcam';
 
-## Updating an existing package README file
+const App = () => {
+  const handleUserMedia = (stream) => {
+    console.log('Webcam stream: ', stream);
+  };
 
-The README file will only be updated on the package page when you publish a new version of your package. To update your README file:
+  return (
+    <div>
+      <h1>Webcam Capture</h1>
+      <Webcam 
+        width={640} 
+        height={480} 
+        screenshotFormat="image/jpeg" 
+        onUserMedia={handleUserMedia} 
+      />
+    </div>
+  );
+};
 
-1. In a text editor, update the contents of the `README.md` file.
+export default App;
 
-2. Save the `README.md` file.
 
-3. On the command line, in the package root directory, run the following commands:
+## Props
 
-   ```
-   npm version patch
-   npm publish
-   ```
+width (optional)
+Type: number
+Default: 640
+Description: Width of the video element.
 
-[markdown-link]: https://guides.github.com/features/mastering-markdown/#what
+height (optional)
+Type: number
+Default: 480
+Description: Height of the video element.
+
+screenshotFormat (optional)
+Type: string
+Default: 'image/jpeg'
+Description: The format of the screenshot image.
+
+videoConstraints (optional)
+Type: MediaTrackConstraints
+Description: Constraints to apply to the video stream. See MDN documentation for more details.
+
+onUserMedia (optional)
+Type: (stream: MediaStream) => void
+Description: Callback function that is invoked when the user's media stream is available.
+
+## Development
+
+# Prerequisites
+Ensure you have Node.js and npm installed. You can check if you have them installed by running:
+node -v
+npm -v
+
+# Cloning the Repository
+git clone https://github.com/your-username/react-webcam-like.git
+cd react-webcam-like
+
+# Installing Dependencies
+npm install
+
+
+
